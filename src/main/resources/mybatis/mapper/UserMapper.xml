@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UserMapper" >
+
+    <resultMap id="BaseResultMap" type="com.example.demo.pojo.User" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+
+    </resultMap>
+
+
+
+    <select id="selectById" parameterType="String" resultMap="BaseResultMap" >
+            select *  from user where id = #{id};
+    </select>
+
+    <insert id="insert" parameterType="com.example.demo.pojo.User" >
+            insert into user
+            (id,username,password)
+            values
+            (#{id},#{username},#{password});
+    </insert>
+
+    <update id="updateById" parameterType="com.example.demo.pojo.User" >
+            update user
+            set username = #{username}
+            where id = #{id};
+    </update>
+
+    <delete id="deleteById" parameterType="String" >
+            delete from user where id = #{id};
+    </delete>
+
+</mapper>
